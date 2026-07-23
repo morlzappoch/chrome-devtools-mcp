@@ -6,7 +6,7 @@
 
 import fs from 'node:fs';
 
-import type {Tool} from '@modelcontextprotocol/sdk/types.js';
+import type {Tool} from '@modelcontextprotocol/server';
 
 import {
   mcpOptions,
@@ -38,13 +38,15 @@ interface ZodCheck {
 }
 
 interface ZodDef {
-  typeName: string;
+  typeName?: string;
   checks?: ZodCheck[];
   values?: string[];
-  type?: ZodSchema;
+  entries?: Record<string, string>;
+  type?: string | ZodSchema;
   innerType?: ZodSchema;
   schema?: ZodSchema;
-  defaultValue?: () => unknown;
+  in?: ZodSchema;
+  defaultValue?: (() => unknown) | unknown;
 }
 
 interface ZodSchema {
@@ -204,21 +206,35 @@ function getZodTypeInfo(schema: ZodSchema): TypeInfo {
   let def = schema._def;
   let defaultValue: unknown;
 
+  let typeName = def.typeName;
+  if (!typeName && typeof def.type === 'string') {
+    typeName = 'Zod' + def.type.charAt(0).toUpperCase() + def.type.slice(1);
+  }
+
   // Unwrap optional/default/effects
   while (
-    def.typeName === 'ZodOptional' ||
-    def.typeName === 'ZodDefault' ||
-    def.typeName === 'ZodEffects'
+    typeName === 'ZodOptional' ||
+    typeName === 'ZodDefault' ||
+    typeName === 'ZodEffects' ||
+    typeName === 'ZodPipeline' ||
+    typeName === 'ZodPipe'
   ) {
-    if (def.typeName === 'ZodDefault' && def.defaultValue) {
-      defaultValue = def.defaultValue();
+    if (typeName === 'ZodDefault' && def.defaultValue !== undefined) {
+      defaultValue =
+        typeof def.defaultValue === 'function'
+          ? (def.defaultValue as () => unknown)()
+          : def.defaultValue;
     }
-    const next = def.innerType || def.schema;
+    const next = def.innerType || def.schema || def.in;
     if (!next) {
       break;
     }
     schema = next;
     def = schema._def;
+    typeName = def.typeName;
+    if (!typeName && typeof def.type === 'string') {
+      typeName = 'Zod' + def.type.charAt(0).toUpperCase() + def.type.slice(1);
+    }
     if (!description && schema.description) {
       description = schema.description;
     }
@@ -232,7 +248,7 @@ function getZodTypeInfo(schema: ZodSchema): TypeInfo {
     result.default = defaultValue;
   }
 
-  switch (def.typeName) {
+  switch (typeName) {
     case 'ZodString':
       result.type = 'string';
       break;
@@ -247,10 +263,13 @@ function getZodTypeInfo(schema: ZodSchema): TypeInfo {
     case 'ZodEnum':
       result.type = 'string';
       result.enum = def.values;
+      if (!result.enum && def.entries) {
+        result.enum = Object.values(def.entries);
+      }
       break;
     case 'ZodArray':
       result.type = 'array';
-      if (def.type) {
+      if (typeof def.type !== 'string' && def.type) {
         result.items = getZodTypeInfo(def.type);
       }
       break;
@@ -262,14 +281,27 @@ function getZodTypeInfo(schema: ZodSchema): TypeInfo {
 
 function isRequired(schema: ZodSchema): boolean {
   let def = schema._def;
-  while (def.typeName === 'ZodEffects') {
-    if (!def.schema) {
+  let typeName = def.typeName;
+  if (!typeName && typeof def.type === 'string') {
+    typeName = 'Zod' + def.type.charAt(0).toUpperCase() + def.type.slice(1);
+  }
+  while (
+    typeName === 'ZodEffects' ||
+    typeName === 'ZodPipeline' ||
+    typeName === 'ZodPipe'
+  ) {
+    const next = def.schema || def.in;
+    if (!next) {
       break;
     }
-    schema = def.schema;
+    schema = next;
     def = schema._def;
+    typeName = def.typeName;
+    if (!typeName && typeof def.type === 'string') {
+      typeName = 'Zod' + def.type.charAt(0).toUpperCase() + def.type.slice(1);
+    }
   }
-  return def.typeName !== 'ZodOptional' && def.typeName !== 'ZodDefault';
+  return typeName !== 'ZodOptional' && typeName !== 'ZodDefault';
 }
 
 async function generateReference(
