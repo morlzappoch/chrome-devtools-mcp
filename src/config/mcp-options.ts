@@ -280,6 +280,12 @@ export const mcpOptions = {
     describe:
       'Set to false to opt-out of usage statistics collection. Google collects usage data to improve the tool, handled under the Google Privacy Policy (https://policies.google.com/privacy). This is independent from Chrome browser metrics. Disabled if `CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS` or `CI` env variables are set.',
   },
+  sourceMaps: {
+    type: 'boolean',
+    default: true,
+    describe:
+      'Whether to enable source maps in DevTools. Use --no-source-maps to disable.',
+  },
   clearcutEndpoint: {
     type: 'string',
     hidden: true,
@@ -538,6 +544,7 @@ export function parser(
         '$0 --no-performance-crux',
         'Disable CrUX (field data) integration in performance tools.',
       ],
+      ['$0 --no-source-maps', 'Disable source maps in DevTools.'],
       [
         '$0 --slim',
         'Only 3 tools: navigation, JavaScript execution and screenshot',

@@ -175,6 +175,7 @@ export async function createMcpServer(
         experimentalDevToolsDebugging: devtools,
         experimentalIncludeAllPages: serverArgs.experimentalIncludeAllPages,
         performanceCrux: serverArgs.performanceCrux,
+        sourceMaps: serverArgs.sourceMaps,
         allowList: allowlist,
         blocklist: blocklist,
         allowUnrestrictedPaths: serverArgs.allowUnrestrictedPaths,

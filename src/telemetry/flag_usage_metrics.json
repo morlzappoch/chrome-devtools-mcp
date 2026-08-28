@@ -389,5 +389,13 @@
   {
     "name": "page_id_routing",
     "flagType": "boolean"
+  },
+  {
+    "name": "source_maps_present",
+    "flagType": "boolean"
+  },
+  {
+    "name": "source_maps",
+    "flagType": "boolean"
   }
 ]

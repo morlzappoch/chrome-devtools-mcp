@@ -57,6 +57,8 @@ interface McpContextOptions {
   experimentalIncludeAllPages?: boolean;
   // Whether CrUX data should be fetched.
   performanceCrux: boolean;
+  // Whether source maps are enabled in DevTools.
+  sourceMaps?: boolean;
   // The allow list of URL patterns to allow loading resources.
   allowList?: string[];
   // The block list of URL patterns to block loading resources.
@@ -556,6 +558,7 @@ export class McpContext implements Context {
           page.browserContext(),
         ),
         navigationTimeout: this.#options.navigationTimeout,
+        sourceMaps: this.#options.sourceMaps,
       });
       this.#mcpPages.set(page, mcpPage);
       await mcpPage.init();
