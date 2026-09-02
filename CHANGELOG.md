@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.9.0](https://github.com/ChromeDevTools/chrome-devtools-mcp/compare/chrome-devtools-mcp-v1.8.0...chrome-devtools-mcp-v1.9.0) (2026-09-02)
+
+
+### 🎉 Features
+
+* Add --allow-unrestricted-paths by default for CLI ([#2618](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2618)) ([2dc104c](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/2dc104ce1bec57f17763cb7d72b33e03057a79bc))
+* add Agent Plugins 1.0 package ([#2623](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2623)) ([05d9e55](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/05d9e55581b48e12412c0b531d87c739143782b6))
+* add an option to turn off js execution tools ([#2627](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2627)) ([a78566e](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/a78566ee7cf5f0126aab84b131ffb15df8785866))
+* Add cookie-debugging skill and improve network/pages tool descriptions ([#2596](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2596)) ([6a67552](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/6a67552771e8e7d6b2e3180f607175ab515e4027))
+* add screencast fps option ([#2312](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2312)) ([2e641d8](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/2e641d8a8a08c3f0c944f308cd1194c0fca78cb6))
+* extend --no-javascript-evaluation to cover navigations and initScripts ([#2638](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2638)) ([4993a0f](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/4993a0f40fb91c6e7e14c073896c14db08817ded))
+* **performance:** set default trace buffer size to match DevTools (1.2gb) ([#2614](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2614)) ([d1baa90](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/d1baa90e2ba8df743c6a3ad41083611799340b5f))
+
+
+### 🛠️ Fixes
+
+* detect scheduled script navigations ([#2622](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2622)) ([1b2c0e5](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/1b2c0e5872949b414c19f1ec2aa62999a317c9b2))
+* do not enable the DevTools frontend Audits subscription ([#2625](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2625)) ([d1e73ff](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/d1e73ffd7e7329386c7606c947b0f88047bbe765))
+* **memory:** expliclity mention the need of a flag ([#2620](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2620)) ([46c3e05](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/46c3e05ade790321a01014492d7b524ff244d3a3))
+* truncate long urls in concise network request output ([#2513](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2513)) ([552c870](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/552c870d3cb8396373b11e2215505b735a394dd8))
+
+
+### 📄 Documentation
+
+* correct what --screenshotFormat reduces ([#2617](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2617)) ([c575777](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/c5757770b051c049ff4a8e5fed3fe6b397390779))
+* split the docs in separate files ([#2600](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2600)) ([5463101](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/5463101120f94fc7c79d43c44c01a4ab57835279))
+* update SECURITY.md ([#2626](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2626)) ([fd67970](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/fd67970881624f231ff84129a1234bb04c762be7))
+
+
+### 🏗️ Refactor
+
+* move transform logic to Clearcut level ([#2637](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2637)) ([f0058d5](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/f0058d55d238edcb6fdef79b089a0ca025c2034f))
+* wrap Server into a class ([#2633](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/2633)) ([1a092ff](https://github.com/ChromeDevTools/chrome-devtools-mcp/commit/1a092ff551c89c137d65f16f595caeb4a46277db))
+
 ## [1.8.0](https://github.com/ChromeDevTools/chrome-devtools-mcp/compare/chrome-devtools-mcp-v1.7.0...chrome-devtools-mcp-v1.8.0) (2026-08-25)
 
 
