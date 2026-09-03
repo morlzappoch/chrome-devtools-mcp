@@ -114,6 +114,7 @@ export class McpServer {
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async connect(transport: any): Promise<void> {
     return await this.server.connect(transport);
   }
@@ -159,6 +160,7 @@ export class McpServer {
    * background refreshes below block nobody, so bounding them would just discard
    * roots a slow client was about to send
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async #updateRoots(timeout?: number): Promise<void> {
     if (!this.server.server.getClientCapabilities()?.roots) {
       return;
@@ -271,7 +273,8 @@ export class McpServer {
         inputSchema: toolHandler.registeredInputSchema,
         annotations: tool.annotations,
       },
-      async (params): Promise<CallToolResult> => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      async (params: any): Promise<CallToolResult> => {
         return await toolHandler.handle(params as Record<string, unknown>);
       },
     );

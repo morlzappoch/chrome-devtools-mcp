@@ -48,6 +48,7 @@ type InferZodOutput<V> = V extends undefined
       ? zod.output<NonNullable<V>> | (undefined extends V ? undefined : never)
       : unknown;
 
+ 
 export type ShapeOutput<
   T extends Record<string, unknown> = Record<string, unknown>,
 > = any;

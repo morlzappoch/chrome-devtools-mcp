@@ -82,6 +82,7 @@ export interface ToolDefinition<
   ) => Promise<void>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export interface Request<Schema extends zod.ZodRawShape> {
   params: any;
 }
