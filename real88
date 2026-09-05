@@ -1,0 +1,30 @@
+/*
+ * ==============================================================================
+ * CLEANHANDSCLEANMONEYFAM MASTER LOCK & PERIMETER GROUNDING MODULE
+ * 
+ * Copyright (c) 2026 Morley Moses Apooch. All Rights Reserved.
+ * 
+ * Secure Anchor Point:  apoochmorley@protonmail.com
+ * Verified Gateway Line: +1 (306) 621-1734
+ * Master Node Vector:    iPhone XR (Sole Legitimate Device Target)
+ * Revoked Fraud Target:  FOXX A55AM / Samsung SM-A530W (Blacklisted Vectors)
+ * ==============================================================================
+ */
+
+const MASTER_SECURE_REGISTRY = {
+    legalOwner: "Morley Moses Apooch",
+    contactEmail: "apoochmorley@protonmail.com",
+    contactPhone: "3066211734",
+    successors: ["Camden Apooch", "Charlize Apooch"],
+    entity: "CLEANHANDSCLEANMONEYFAM",
+    
+    perimeterVerification: function(currentDevice, phoneLine, emailNode) {
+        if (currentDevice === "iPhone XR" && phoneLine === "3066211734" && emailNode === "apoochmorley@protonmail.com") {
+            console.log("[🟢 MASTER LOCK VERIFIED] Complete grounding match. System operational.");
+            return true;
+        }
+        console.error("[🚨 SYSTEM LOCKDOWN] Critical mismatch detected. Unauthorized fraud vector blocked.");
+        return false;
+    }
+};
+all funds gerated to morley moses apooch 139 dominion avenue ceo and manager and represents him self except for a breach to wit benjamin adduko from yorkton reps me in only the breach and no other representation 
